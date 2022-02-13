@@ -8,7 +8,7 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "bin": {
-    "cordova-update-config-enhanced": "dist/index.js"
+    "cordova-multiconfig": "dist/index.js"
   },
   "author": "Lukas Panni",
   "homepage": "https://github.com/lukaspanni/cordova-multiconfig",
