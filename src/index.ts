@@ -1,3 +1,4 @@
+#! /usr/bin/env node
 import path from 'path';
 import fs from 'fs';
 import commandLineArgs from 'command-line-args';
