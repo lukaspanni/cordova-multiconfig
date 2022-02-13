@@ -35,6 +35,12 @@ const optionDefinitions = [
     description: 'Create a new config with specified name based on the default cordova.config',
     alias: 'c',
     type: String
+  },
+  {
+    name: 'list',
+    description: 'List all detected config files in the cordova-project',
+    alias: 'l',
+    type: Boolean
   }
 ];
 
@@ -46,6 +52,12 @@ const main = (callArguments: commandLineArgs.CommandLineOptions): void => {
   const mainConfig = path.join(configRoot, 'config.xml');
   // get all configFiles (config*.xml)
   const configFiles = fs.readdirSync(configRoot).filter((file) => file.startsWith('config') && file.endsWith('.xml'));
+
+  if (callArguments['list']) {
+    console.log(`Found ${configFiles.length} config file[s]:`);
+    configFiles.forEach((file) => console.log(`- ${file}`));
+    return;
+  }
 
   if (callArguments['create'] !== undefined && callArguments['create'].length !== 0) {
     const configFilename = 'config.' + callArguments['create'] + '.xml';
