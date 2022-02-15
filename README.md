@@ -1,6 +1,8 @@
 # cordova-multiconfig
 
-[![npm version](https://badge.fury.io/js/cordova-multiconfig.svg)](https://badge.fury.io/js/cordova-multiconfig)
+<a href="https://www.npmjs.com/package/cordova-multiconfig"><img src="https://badgen.net/npm/v/cordova-multiconfig" alt="Version"></a>
+<a href="https://www.npmjs.com/package/cordova-multiconfig"><img src="https://badgen.net/npm/dt/cordova-multiconfig" alt="Downloads"></a>
+<a href="https://www.npmjs.com/package/cordova-multiconfig"><img src="https://badgen.net/npm/license/cordova-multiconfig" alt="License"></a>
 
 Small tool to support using multiple cordova configs inside one repository.
 
