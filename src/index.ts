@@ -5,7 +5,12 @@ import commandLineArgs from 'command-line-args';
 import commandLineUsage from 'command-line-usage';
 const packageData = require('../package.json');
 
-const optionDefinitions = [
+//option definition with description for commandLineUsage
+type OptionDefinition = commandLineArgs.OptionDefinition & { description: string };
+
+const backupExtension = '.bak';
+
+const optionDefinitions: OptionDefinition[] = [
   {
     name: 'help',
     description: 'Display this usage guide',
@@ -41,6 +46,18 @@ const optionDefinitions = [
     description: 'List all detected config files in the cordova-project',
     alias: 'l',
     type: Boolean
+  },
+  {
+    name: 'activate',
+    description: 'Activate a config file',
+    alias: 'a',
+    type: String
+  },
+  {
+    name: 'deactivate',
+    description: 'Deactivate config and activate backed-up default config',
+    alias: 'd',
+    type: String
   }
 ];
 
@@ -49,7 +66,7 @@ const main = (callArguments: commandLineArgs.CommandLineOptions): void => {
   if (!continueExecution) return;
 
   const configRoot = getCordovaProjectRoot(callArguments['root']);
-  const mainConfig = path.join(configRoot, 'config.xml');
+  const mainConfigFilename = path.join(configRoot, 'config.xml');
   // get all configFiles (config*.xml)
   const configFiles = fs.readdirSync(configRoot).filter((file) => file.startsWith('config') && file.endsWith('.xml'));
 
@@ -62,11 +79,52 @@ const main = (callArguments: commandLineArgs.CommandLineOptions): void => {
   if (callArguments['create'] !== undefined && callArguments['create'].length !== 0) {
     const configFilename = 'config.' + callArguments['create'] + '.xml';
     if (!callArguments['force'] && configFiles.includes(configFilename)) {
-      console.error(`Error: the config file ${configFilename} already exists. To force creation use -f`);
+      console.error(`Error: the config file '${configFilename}' already exists. To force creation use -f`);
       return;
     }
-    fs.copyFileSync(mainConfig, path.join(configRoot, configFilename));
-    console.log(`Successfully created config file ${configFilename}`);
+    fs.copyFileSync(mainConfigFilename, path.join(configRoot, configFilename));
+    console.log(`Successfully created config file '${configFilename}'`);
+    return;
+  }
+
+  if (callArguments['activate'] !== undefined && callArguments['activate'].length !== 0) {
+    const configFilename = 'config.' + callArguments['activate'] + '.xml';
+    if (!configFiles.includes(configFilename)) {
+      console.error(`Error: the config file '${configFilename}' could not be found`);
+      return;
+    }
+    const backupFilename = mainConfigFilename + backupExtension;
+    if (!callArguments['force'] && fs.existsSync(backupFilename)) {
+      console.error(
+        `Error: could not backup current config to '${backupFilename}' because the file exists. To overwrite use -f`
+      );
+    }
+    fs.renameSync(mainConfigFilename, backupFilename);
+    fs.renameSync(configFilename, mainConfigFilename);
+    console.log(
+      `Successfully activated config '${callArguments['activate']}'\nBacked up previously activated config at ${backupFilename}`
+    );
+    return;
+  }
+
+  if (callArguments['deactivate'] !== undefined && callArguments['deactivate'].length !== 0) {
+    const backupFilename = mainConfigFilename + backupExtension;
+    if (!fs.existsSync(backupFilename)) {
+      console.error(`Error: could not find a config backup at '${backupFilename}'`);
+      return;
+    }
+
+    const configFilename = 'config.' + callArguments['deactivate'] + '.xml';
+    if (!callArguments['force'] && configFiles.includes(configFilename)) {
+      console.error(`Error: the config file '${configFilename}' already exists. To force deactivate use -f`);
+      return;
+    }
+
+    fs.renameSync(mainConfigFilename, configFilename);
+    fs.renameSync(backupFilename, mainConfigFilename);
+    console.log(
+      `Successfully deactivated config '${callArguments['deactivate']}' and stored at '${configFilename}'.\nRestored previously activated config from backup.`
+    );
     return;
   }
 };
