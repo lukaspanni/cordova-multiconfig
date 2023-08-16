@@ -47,8 +47,6 @@
     "build-debug": "tsc --build tsconfig.debug.json",
     "clean": "tsc --build tsconfig.debug.json --clean",
     "prepare": "npm run clean && npm run build",
-    "preversion": "npm run lint",
-    "postversion": "git push && git push --tags"
   },
   "dependencies": {
     "command-line-args": "^5.2.1",
