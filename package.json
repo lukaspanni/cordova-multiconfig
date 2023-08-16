@@ -46,7 +46,7 @@
     "build": "tsc --build tsconfig.json",
     "build-debug": "tsc --build tsconfig.debug.json",
     "clean": "tsc --build tsconfig.debug.json --clean",
-    "prepare": "npm run clean && npm run build",
+    "prepare": "npm run clean && npm run build"
   },
   "dependencies": {
     "command-line-args": "^5.2.1",
