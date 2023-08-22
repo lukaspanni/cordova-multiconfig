@@ -21,7 +21,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          patch-wording:  'patch,fixes,Bump'
           tag-prefix: 'v'
       - run: npm publish
         env:
