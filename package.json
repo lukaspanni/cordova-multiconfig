@@ -28,17 +28,17 @@
     "automation"
   ],
   "devDependencies": {
-    "@types/command-line-args": "^5.2.0",
+    "@types/command-line-args": "^5.2.1",
     "@types/command-line-usage": "^5.0.2",
-    "@types/node": "^20.5.0",
-    "@typescript-eslint/eslint-plugin": "^6.5.0",
-    "@typescript-eslint/parser": "^5.11.0",
-    "eslint": "^8.8.0",
+    "@types/node": "^20.6.3",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "eslint": "^8.49.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-prettier": "^5.0.0",
     "husky": "^8.0.3",
-    "prettier": "^3.0.2",
-    "typescript": "^5.1.6"
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
   },
   "scripts": {
     "lint": "npx eslint . --ext .ts",
