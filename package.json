@@ -28,14 +28,14 @@
     "automation"
   ],
   "devDependencies": {
-    "@types/command-line-args": "^5.2.1",
-    "@types/command-line-usage": "^5.0.2",
-    "@types/node": "^20.8.4",
-    "@typescript-eslint/eslint-plugin": "^6.7.5",
-    "@typescript-eslint/parser": "^6.7.5",
-    "eslint": "^8.51.0",
+    "@types/command-line-args": "^5.2.2",
+    "@types/command-line-usage": "^5.0.3",
+    "@types/node": "^20.8.8",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "eslint": "^8.52.0",
     "eslint-config-prettier": "^9.0.0",
-    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "husky": "^8.0.3",
     "prettier": "^3.0.3",
     "typescript": "^5.2.2"
