@@ -16,6 +16,9 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run lint
+      - run: |
+          echo ${{ github.event.head_commit.committer.username }}
+          exit 1
       - name: 'Automated Version Bump'
         if: ${{ github.event.head_commit.committer.username == 'dependabot[bot]' }}
         uses: 'phips28/gh-action-bump-version@master'
