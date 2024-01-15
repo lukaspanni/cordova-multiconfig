@@ -1,6 +1,6 @@
 {
   "name": "cordova-multiconfig",
-  "version": "3.5.3",
+  "version": "3.5.4",
   "license": "MIT",
   "description": "small tool to support using multiple cordova configs inside one repository ",
   "files": [
