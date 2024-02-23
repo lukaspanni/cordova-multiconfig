@@ -1,3 +1,6 @@
+**Note**: as of 2024/02 this is project is no longer maintained but should keep working.
+I consider the tool as complete (it has been for some time now) and don't use cordova anymore.
+
 # cordova-multiconfig
 
 <a href="https://www.npmjs.com/package/cordova-multiconfig"><img src="https://badgen.net/npm/v/cordova-multiconfig" alt="Version"></a>
